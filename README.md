@@ -117,6 +117,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
     ├── src
         ├── components
         ├── pages
+        ├── api
         └── App.jsx
 ```
 
