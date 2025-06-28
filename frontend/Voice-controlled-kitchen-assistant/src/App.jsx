@@ -6,8 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
 import SavedRecipes from './pages/SavedRecipes';
 import NotFound from './pages/NotFound';
-
-const isLoggedIn = () => !!localStorage.getItem('token');
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
@@ -15,10 +14,14 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={isLoggedIn() ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/saved" element={isLoggedIn() ? <SavedRecipes /> : <Navigate to="/login" />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/saved" element={<SavedRecipes />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
